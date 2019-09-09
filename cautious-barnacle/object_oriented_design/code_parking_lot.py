@@ -3,9 +3,10 @@ from enum import Enum
 
 
 class ParkingLot:
-    def __init__(self, spaceProvider):
+    def __init__(self, spaceProvider, billing):
         self.spaceProvider = spaceProvider
         self.sessionToSpaceMap = {}
+        self.billing = billing
 
     def addVehicle(self, vehicle):
         try:
@@ -14,6 +15,7 @@ class ParkingLot:
             print("unable to allocate space")
         session = Session()
 
+        self.billing.addSession(session)
         self.sessionToSpaceMap[session] = space
 
         return session
@@ -21,8 +23,23 @@ class ParkingLot:
     def removeVehicle(self, session):
         space = self.sessionToSpaceMap[session]
         self.spaceProvider.deallocateSpace(space)
+        session.setDuration()
 
         return space.vehicle
+
+
+class Billing:
+    def __init__(self):
+        self.unfilfilledSessions = {}
+
+    def addSession(self, session):
+        self.unfilfilledSessions[session.id] = session
+
+    def fulfillSssion(self, sessionId):
+        del(self.unfilfilledSessions[sessionId])
+
+    def isSessionFulfilled(self, sessionId):
+        return sessionId in self.unfilfilledSessions
 
 
 class SpaceProvider:
@@ -99,6 +116,10 @@ class Session:
     def __init__(self):
         self.id = ""  # Get unique session ID
         self.startTime = datetime.now()
+        self.duration = 0
 
     def getDuration(self):
         return datetime.now - self.startTime
+
+    def setDuration(self):
+        self.duration = datetime.now - self.startTime

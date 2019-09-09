@@ -53,7 +53,9 @@
 - Load balancer
 - Web server
 - Data servers
-- Database
+- Storage interface
+- Storage/ Database access layer
+- Database/ in memory storage, disk storage
 - CDN
 - Cache
 - Key data structures
