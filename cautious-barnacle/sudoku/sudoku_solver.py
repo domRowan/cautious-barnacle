@@ -162,6 +162,6 @@ zero_input = [
 [0, 0, 0, 0, 0, 0, 0, 0, 0],  
 [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-sudoku_solver(zero_input)
+sudoku_solver(valid_input)
 
 
