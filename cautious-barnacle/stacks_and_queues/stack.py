@@ -51,11 +51,11 @@ def create_a_stack():
     stack.push(d)
     stack.push(e)
 
-    print stack.pop()
-    print stack.pop()
-    print stack.pop()
-    print stack.pop()
-    print stack.pop()
-
-
+    print(stack.pop())
+    print(stack.pop())
+    print(stack.pop())
+    print(stack.pop())
+    print(stack.pop())
+    print(stack.pop())
+    
 create_a_stack()

@@ -1,5 +1,6 @@
 from data.mnist_loader import load_data_wrapper
 from neural_network import Network
+import time
 
 # Load_data_wrapper has a hardcoded reference to the mnist data file.
 # If you move this file you should update this reference
@@ -18,5 +19,9 @@ learning_rate = 3.0
 
 net = Network(layers)
 
+start_time = time.time()
 net.stochasticGradientDescent(
     training_data, number_of_epochs, mini_batch_size, learning_rate, test_data=test_data)
+end_time = time.time()
+duration = end_time - start_time
+print(duration)
